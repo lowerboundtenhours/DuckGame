@@ -2,43 +2,36 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 
-	private static Duck[] ducks = {new Duck("MallardDuck"), 
-								   new Duck("RedheadDuck"), 
-								   new Duck("RubberDuck"), 
-								   new Duck("DecoyDuck")};
+	private static Map<String, Duck> ducks = new HashMap<>();
 	
 	public static void main(String[] args) {
 		try {
 			File input = new File(args[0]);
 			BufferedReader reader = new BufferedReader(new FileReader(input)); 
 			String line;
-			Duck duck;
 			
 			while((line = reader.readLine()) != null) {
 				String token[] = line.split(" ");
 				
 				if (token[0].equals("duck")) {
-					duck = ducks[getDuck(token[1])];
-					setDuckFlyBehavior(duck, token[2]);
-					setDuckQuackBehavior(duck, token[3]);
+					ducks.put(token[1], createDuck(token[1]));
+					setDuckFlyBehavior(ducks.get(token[1]), token[2]);
+					setDuckQuackBehavior(ducks.get(token[1]), token[3]);
 				} else if (token[0].equals("changeFly")) {
-					duck = ducks[getDuck(token[1])];
-					setDuckFlyBehavior(duck, token[2]);
+					setDuckFlyBehavior(ducks.get(token[1]), token[2]);
 				} else if (token[0].equals("changeQuack")) {
-					duck = ducks[getDuck(token[1])];
-					setDuckQuackBehavior(duck, token[2]);
+					setDuckQuackBehavior(ducks.get(token[1]), token[2]);
 				} else if (token[0].equals("swim")) {
-					duck = ducks[getDuck(token[1])];
-					duck.swim();
+					ducks.get(token[1]).swim();
 				} else if (token[0].equals("fly")) {
-					duck = ducks[getDuck(token[1])];
-					duck.performFly();
+					ducks.get(token[1]).performFly();
 				} else if (token[0].equals("quack")) {
-					duck = ducks[getDuck(token[1])];
-					duck.performQuack();
+					ducks.get(token[1]).performQuack();
 				}
 			}
 			reader.close();
@@ -47,16 +40,16 @@ public class Main {
 		}
 	}
 	
-	 static int getDuck(String type) {
+	 static Duck createDuck(String type) {
 		
 		if (type.equals("MallardDuck"))
-			return 0;
+			return new MallardDuck();
 		else if (type.equals("ReadheadDuck"))
-			return 1;
+			return new RedheadDuck();
 		else if (type.equals("RubberDuck"))
-			return 2;
+			return new RubberDuck();
 		else
-			return 3;
+			return new DecoyDuck();
 	}
 	
 	static void setDuckFlyBehavior(Duck duck, String behavior) {
