@@ -1,0 +1,10 @@
+duck MallardDuck CanFly Quack
+swim MallardDuck
+fly MallardDuck
+quack MallardDuck
+changeFly MallardDuck CannotFly
+fly MallardDuck
+changeQuack MallardDuck Squeak
+quack MallardDuck
+changeQuack MallardDuck Silent
+quack MallardDuck
