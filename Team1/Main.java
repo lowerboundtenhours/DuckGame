@@ -44,7 +44,7 @@ public class Main {
 		
 		if (type.equals("MallardDuck"))
 			return new MallardDuck();
-		else if (type.equals("ReadheadDuck"))
+		else if (type.equals("RedheadDuck"))
 			return new RedheadDuck();
 		else if (type.equals("RubberDuck"))
 			return new RubberDuck();
