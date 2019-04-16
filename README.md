@@ -1,5 +1,6 @@
 # DuckGame
 Homework of design pattern: Strategy
+![UML_Diagram](/doc/DuckGame.png)
 
 ## Spec
 ### Requirements Statement
